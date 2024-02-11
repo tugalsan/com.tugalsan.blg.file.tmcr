@@ -1,5 +1,7 @@
 package com.tugalsan.blg.doc;
 
+import com.tugalsan.api.log.server.TS_Log;
+
 
 public class Main {
 
