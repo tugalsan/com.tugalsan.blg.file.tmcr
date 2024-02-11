@@ -1,2 +1,2 @@
-module com.tugalsan.tst.doc {
+module com.tugalsan.blg.doc {
 }

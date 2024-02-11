@@ -1,4 +1,4 @@
-package com.tugalsan.tst.doc;
+package com.tugalsan.blg.doc;
 
 
 public class Main {
