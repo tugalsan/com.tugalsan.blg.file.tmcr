@@ -7,7 +7,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>com.tugalsan.api.file.tmcr</artifactId>
+            <artifactId>com.tugalsan.lib.file.tmcr</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
