@@ -3,7 +3,7 @@ package com.tugalsan.blg.file.tmcr;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
-import com.tugalsan.api.file.common.server.TS_FileCommonBall;
+import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
@@ -36,7 +36,7 @@ public class Main {
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
         );
-        var result = TS_FileTmcrFileHandler.use(toBall(macroLines), createDbAnchor("test"), progressUpdate);
+        var result = TS_FileTmcrFileHandler.use(toConfig(macroLines), createDbAnchor("test"), progressUpdate);
         d.cr("main", "result", result);
     }
 
@@ -49,7 +49,7 @@ public class Main {
         return new TS_SQLConnAnchor(new TS_SQLConnConfig(dbName));
     }
 
-    private static TS_FileCommonBall toBall(List<String> macroLines) {
+    private static TS_FileCommonConfig toConfig(List<String> macroLines) {
         String username = "myUserName";
         String tablename = "myTableName";
         Long selectedId = 1L;
@@ -85,7 +85,7 @@ public class Main {
         TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> customDomain.toString();//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> customDomain.toString();//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> customDomain.toString();//SKIP LEGACY CODE
-        return new TS_FileCommonBall(
+        return new TS_FileCommonConfig(
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
