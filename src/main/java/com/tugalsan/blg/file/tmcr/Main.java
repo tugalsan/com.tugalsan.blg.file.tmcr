@@ -6,7 +6,6 @@ import com.tugalsan.api.callable.client.TGS_CallableType5;
 import com.tugalsan.api.file.common.server.TS_FileCommonBall;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
-import com.tugalsan.api.runnable.client.TGS_RunnableType1;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
@@ -89,54 +88,12 @@ public class Main {
                 libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
                 libFileServletUtils_URL_SERVLET_FETCH_USER
         );
-        var anchor = new TS_SQLConnAnchor(new TS_SQLConnConfig("test"));
-        TGS_RunnableType2<String, Integer> progressUpdate_with_userDotTable_and_percentage = (userDotTable, percentage) -> {
+        var dbAnchor = new TS_SQLConnAnchor(new TS_SQLConnConfig("test"));
+        TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
             var clearPercentages = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES();
             d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", clearPercentages ? "clearPercentages" : percentage);
         };
-        TGS_RunnableType1<TS_FileTmcrFileHandler> exeBeforeZip = fileHandler -> {
-            d.cr("main", "exeBeforeZip", "nothing to do");
-        };
-        TGS_RunnableType1<TS_FileTmcrFileHandler> exeAfterZip = fileHandler -> {
-            d.cr("main", "exeAfterZip", "nothing to do");
-        };
-        var result = TS_FileTmcrFileHandler.use(
-                fileCommonBall, anchor,
-                progressUpdate_with_userDotTable_and_percentage,
-                exeBeforeZip, exeAfterZip
-        );
+        var result = TS_FileTmcrFileHandler.use(fileCommonBall, dbAnchor, progressUpdate);
         d.cr("main", "result", result);
     }
 }
-/*
-{TS_FileCommonBall}, {macroLines}, {[1685], []}
-{TS_FileCommonBall}, {username}, {[admin]}
-{TS_FileCommonBall}, {tablename}, {[fasongiris]}
-{TS_FileCommonBall}, {selectedId}, {[23050461]}
-{TS_FileCommonBall}, {funcName}, {[Giri? Formu (Üzerinde ??lem Yap?lacak Mü?teri Ürünü)]}
-{TS_FileCommonBall}, {fileNameLabel}, {[Giri? Formu (Üzerinde ??lem Yap?lacak Mü?teri Ürün]}
-{TS_FileCommonBall}, {url}, {[https://localhost:8443/app-table/?test=mesauser2&bif=Y2xpZW50RGF0ZSAoMjAyNDAyMjApbW96aWxsYS81LjAgKHdpbmRvd3MgbnQgMTAuMDsgd2luNjQ7IHg2NCkgYXBwbGV3ZWJraXQvNTM3LjM2IChraHRtbCwgbGlrZSBnZWNrbykgY2hyb21lLzEyMS4wLjAuMCBzYWZhcmkvNTM3LjM2IGVkZy8xMjEuMC4wLjAgc3RvcmFnZUxvY2FsX2Rlc2t0b3AgKHRydWUpIHN0b3JhZ2VTZXNzaW9uX2Rlc2t0b3AgKHRydWUpIGlzT3JpZW50YXRpb25VbmRlZmluZWQgKHRydWUpIGlzTW9iaWxlIChmYWxzZSkgZGVwdGhDb2xvciAoMjQpIGRlcHRoUGl4ZWwgKDI0KSB3aWR0aFNjcmVlbiAoMTI4MCkgaGVpZ2h0U2NyZWVuICg3MjAp&ctk=WzE3MDg0MjEwOTM2NDhdLCBbN2YzODEyYzgtYjM0My00MjM0LThkMWEtZjA5ZmVkMDQ0NWE3XSwgW05udy1wcHRHVERQSFQ1Z05d&acf=Y2xpZW50VG9rZW4tPlsxNzA4NDIxMDkzNjQ4XSwgWzdmMzgxMmM4LWIzNDMtNDIzNC04ZDFhLWYwOWZlZDA0NDVhN10sIFtObnctcHB0R1REUEhUNWdOXSwgc2VydmVyVG9rZW4tPlsxNzA4NDIxMDkzODU0XSwgW0RDQzUyMkQ2QzQyNzY4ODAzQzM2REU3OTU0N0Y5QTk3NDc5RTM3QjczQjEwMzMyODI5QkJFN0JDMTQzNDE4OENdLCBbT3UwRThDLXhITTRCV2NkTG8tWFc3aEZXU1AzbUNkd0hfNktvQTZHa0VvNlRKQzdHaDJpdW14T2dEcDl2ZkJMS29laFR3SjhPcHg3dC0tc1lCU0tyUm94N1Y2SGt4U3NnLXdGMy53V2VVVm43QVA0LjZBZnlGeDhmNWs2MEo1bVhlVGRBWXVIZXk5c0JZNHJQVDdkTXpOQ29GMEV6a19iOTZrMnBiQ2otLS1vaFdmeERUWXdKM21kbVlGRHhZREFjUHVhWkY1RmRmTUU4SDNPZFNHY1k0dGtZZVQ5N0tiTHh2d2hFaG5ENFNvLWZhTG13eEZkRWlEZS5pQmlrUFBHZFY3R3dYRkhaQWdaVWIzSmFiVzR5T0pKLks2WnhXWkYtS1hNZy13WFp2aEdCaXUzc00wWFdCLW00ak5YZW5vc1drYk4zaDhKSEVoX2ZLM28udlBSWjZ2a2pjaTU3YmtELU5fY1l5QXZlX3NLejZKZGdVV3NraVVwdFpmeC5kWFZPXSwgW1BsZWFzZSBkbyBub3QgaGFjayBtZSA6KV0.&app=bGFtYmRhJDEkVHlwZQ..&mdl=QXBwTW9kdWxlVGFibGU.&CURRENT_TABLE_NAME=ZmFzb25naXJpcw..&CELLS_ROW_SIZE=MTI.]}
-{TS_FileCommonBall}, {requestedFileTypes}, {[0], [.htm]}
-{TS_FileCommonBall}, {requestedFileTypes}, {[1], [.pdf]}
-{TS_FileCommonBall}, {requestedFileTypes}, {[2], [.html]}
-{TS_FileCommonBall}, {fontPathBold}, {[D:\xampp_data\DAT\PUB\FONT\Roboto-Bold.ttf]}
-{TS_FileCommonBall}, {fontPathBoldItalic}, {[D:\xampp_data\DAT\PUB\FONT\Roboto-BoldItalic.ttf]}
-{TS_FileCommonBall}, {fontPathItalic}, {[D:\xampp_data\DAT\PUB\FONT\Roboto-Italic.ttf]}
-{TS_FileCommonBall}, {fontPathRegular}, {[D:\xampp_data\DAT\PUB\FONT\Roboto-Regular.ttf]}
-{TS_FileCommonBall}, {customDomain}, {[https://localhost:8443]}
-{TS_FileCommonBall}, {favIconPng}, {[https://localhost:8443/res-other/res/mesametal_com/favicon/mesametal-dark-16x16.png]}
-{TS_FileCommonBall}, {domainName}, {[localhost]}
-{TS_FileCommonBall}, {manipulateInjectCode}, {[true]}
-{TS_FileCommonBall}, {dirDatTbl}, {[D:\xampp_data\DAT\TBL]}
-{TS_FileCommonBall}, {dirDatPub}, {[D:\xampp_data\DAT\PUB]}
-{TS_FileCommonBall}, {dirDatUsr}, {[D:\xampp_data\DAT\USR\admin]}
-{TS_FileCommonBall}, {dirDatUsrTmp}, {[D:\xampp_data\DAT\USR\admin\tmp]}
-{TS_FileCommonBall}, {dirDatTbl}, {[D:\xampp_data\DAT\TBL]}
-{TS_FileCommonBall}, {dirDatTbl}, {[D:\xampp_data\DAT\TBL]}
-{TS_FileCommonBall}, {libTableFileList_getFileNames_DataIn}, {[true]}
-{TS_FileCommonBall}, {libTableFileDir_datTblTblnameColname}, {[true]}
-{TS_FileCommonBall}, {libTableFileGetUtils_urlUsrTmp}, {[true]}
-{TS_FileCommonBall}, {libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE}, {[true]}
-{TS_FileCommonBall}, {libFileServletUtils_URL_SERVLET_FETCH_PUBLIC}, {[true]}
-{TS_FileCommonBall}, {libFileServletUtils_URL_SERVLET_FETCH_USER}, {[true]}
- */
