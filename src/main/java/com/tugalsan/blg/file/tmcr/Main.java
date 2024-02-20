@@ -26,7 +26,6 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
-
         List<String> macroLines = TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
@@ -37,6 +36,20 @@ public class Main {
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
         );
+        var result = TS_FileTmcrFileHandler.use(toBall(macroLines), createDbAnchor("test"), progressUpdate);
+        d.cr("main", "result", result);
+    }
+
+    private static TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
+        var clearPercentages = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES();
+        d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", clearPercentages ? "clearPercentages" : percentage);
+    };
+
+    private static TS_SQLConnAnchor createDbAnchor(String dbName) {
+        return new TS_SQLConnAnchor(new TS_SQLConnConfig(dbName));
+    }
+
+    private static TS_FileCommonBall toBall(List<String> macroLines) {
         String username = "myUserName";
         String tablename = "myTableName";
         Long selectedId = 1L;
@@ -72,7 +85,7 @@ public class Main {
         TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> customDomain.toString();//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> customDomain.toString();//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> customDomain.toString();//SKIP LEGACY CODE
-        var fileCommonBall = new TS_FileCommonBall(
+        return new TS_FileCommonBall(
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
@@ -88,12 +101,5 @@ public class Main {
                 libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
                 libFileServletUtils_URL_SERVLET_FETCH_USER
         );
-        var dbAnchor = new TS_SQLConnAnchor(new TS_SQLConnConfig("test"));
-        TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
-            var clearPercentages = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES();
-            d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", clearPercentages ? "clearPercentages" : percentage);
-        };
-        var result = TS_FileTmcrFileHandler.use(fileCommonBall, dbAnchor, progressUpdate);
-        d.cr("main", "result", result);
     }
 }
