@@ -70,7 +70,7 @@ public class Main {
         Path fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");
         Path fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");
         Path fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");
-        Path fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
+        Path fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");//Roboto-Regular.ttf
         TGS_Url customDomain = TGS_Url.of("https://localhost:8443");
         TGS_Url favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
         String domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
