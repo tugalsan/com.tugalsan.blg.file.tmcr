@@ -28,6 +28,7 @@ public class Main {
     public static void main(String... s) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         TS_FileTmcrFileHandler.enablePreviewPanLetters = true;
+        TS_FileTmcrFileHandler.d.infoEnable = true;
 //        TGS_UnSafe.run(() -> {//TEST canDisplay
 //            var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
 //            var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");
