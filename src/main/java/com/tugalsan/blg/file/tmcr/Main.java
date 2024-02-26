@@ -41,8 +41,8 @@ public class Main {
     }
 
     private static TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
-        var clearPercentages = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES();
-        d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", clearPercentages ? "clearPercentages" : percentage);
+        var value = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
+        d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", value);
     };
 
     private static TS_SQLConnAnchor createDbAnchor(String dbName) {
@@ -50,13 +50,13 @@ public class Main {
     }
 
     private static TS_FileCommonConfig toConfig(List<String> macroLines) {
-        String username = "myUserName";
-        String tablename = "myTableName";
-        Long selectedId = 1L;
+        var username = "myUserName";
+        var tablename = "myTableName";
+        var selectedId = 1L;
 
-        String funcName = "MyFunctionName";
-        String fileNameLabel = "MyFileNameLabel";
-        TGS_Url url = TGS_Url.of("http://tugalsan.com");
+        var funcName = "MyFunctionName";
+        var fileNameLabel = "MyFileNameLabel";
+        var url = TGS_Url.of("http://tugalsan.com");
         List<String> requestedFileTypes = TGS_ListUtils.of(
                 TGS_FileTmcrTypes.FILE_TYPE_DOCX(),
                 TGS_FileTmcrTypes.FILE_TYPE_HTM(),
@@ -66,19 +66,19 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_XLSX(),
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
-        Path dirDat = Path.of("D:\\xampp_data\\DAT");
-        Path fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");
-        Path fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");
-        Path fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");
-        Path fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
-        Path fontPathSymbols = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");//chars looks bad, but has SYMBOLS!
-        TGS_Url customDomain = TGS_Url.of("https://localhost:8443");
-        TGS_Url favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
-        String domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
-        Path dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
-        Path dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
-        Path dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
-        Path dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
+        var dirDat = Path.of("D:\\xampp_data\\DAT");
+        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");
+        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");
+        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");
+        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
+        var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");
+        var customDomain = TGS_Url.of("https://localhost:8443");
+        var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
+        var domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
+        var dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
+        var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
+        var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
+        var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
         TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
         TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
         TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
@@ -91,7 +91,7 @@ public class Main {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular,
+                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
