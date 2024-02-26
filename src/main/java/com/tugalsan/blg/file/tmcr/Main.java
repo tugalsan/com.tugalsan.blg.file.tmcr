@@ -9,6 +9,7 @@ import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
+import com.tugalsan.api.unsafe.client.TGS_UnSafe;
 import com.tugalsan.api.url.client.TGS_Url;
 import com.tugalsan.lib.file.tmcr.client.TGS_FileTmcrTypes;
 import com.tugalsan.lib.file.tmcr.server.code.page.TS_FileTmcrCodePageWriter;
@@ -16,8 +17,11 @@ import com.tugalsan.lib.file.tmcr.server.code.parser.TS_FileTmcrParser;
 import com.tugalsan.lib.file.tmcr.server.code.table.TS_FileTmcrCodeTableWriter;
 import com.tugalsan.lib.file.tmcr.server.code.text.TS_FileTmcrCodeTextWriter;
 import com.tugalsan.lib.file.tmcr.server.file.TS_FileTmcrFileHandler;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Main {
 
@@ -26,12 +30,34 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
+        var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
+
+//        TGS_UnSafe.run(() -> {//TEST canDisplay
+//            var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
+//            var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");
+//            var fontRegular = Font.createFont(Font.TRUETYPE_FONT, fontPathRegular.toFile()).deriveFont(12f);
+//            var fontPanUnicode = Font.createFont(Font.TRUETYPE_FONT, fontPathPanUnicode.toFile()).deriveFont(12f);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontRegular);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontPanUnicode);
+//            var codePoints = text.codePoints().toArray();
+//            var sb = new StringBuilder();
+//            IntStream.range(0, codePoints.length).forEachOrdered(idx -> {
+//                var codePoint = codePoints[idx];
+//                sb.setLength(0);
+//                sb.appendCodePoint(codePoint);
+//                var letter = sb.toString();
+//                d.cr("letterTest", idx, letter, fontRegular.canDisplay(codePoint), fontPanUnicode.canDisplay(codePoint));
+//            });
+//        });
+//        if (true) {
+//            return;
+//        }
         List<String> macroLines = TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
                 TS_FileTmcrCodeTextWriter.BEGIN_TEXT_LEFT(),
-                TS_FileTmcrCodeTextWriter.ADD_TEXT("Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ"),
+                TS_FileTmcrCodeTextWriter.ADD_TEXT(text),
                 TS_FileTmcrCodeTextWriter.END_TEXT(),
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
