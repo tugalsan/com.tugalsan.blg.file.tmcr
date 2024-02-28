@@ -1,8 +1,5 @@
 package com.tugalsan.blg.file.tmcr;
 
-import com.tugalsan.api.callable.client.TGS_CallableType1;
-import com.tugalsan.api.callable.client.TGS_CallableType2;
-import com.tugalsan.api.callable.client.TGS_CallableType5;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
@@ -102,13 +99,6 @@ public class Main {
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
         var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
-        TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
-        TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
-        TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
-        TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> favIconPng;//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> customDomain.toString();//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> customDomain.toString();//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> customDomain.toString();//SKIP LEGACY CODE
         return new TS_FileCommonConfig(
                 macroLines, username,
                 tablename, selectedId,
@@ -116,14 +106,7 @@ public class Main {
                 requestedFileTypes, dirDat,
                 fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
                 customDomain, favIconPng, domainName,
-                manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
-                libTableFileList_getFileNames_DataIn,
-                libTableFileDir_datTblTblnameColname,
-                libTableFileGetUtils_urlUsrTmp,
-                libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
-                libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-                libFileServletUtils_URL_SERVLET_FETCH_USER
         );
     }
 }
