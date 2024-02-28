@@ -69,7 +69,7 @@ public class Main {
     };
 
     private static TS_SQLConnAnchor createDbAnchor(String dbName) {
-        return new TS_SQLConnAnchor(new TS_SQLConnConfig(dbName));
+        return TS_SQLConnAnchor.of(TS_SQLConnConfig.of(dbName));
     }
 
     private static TS_FileCommonConfig toConfig(List<String> macroLines) {
