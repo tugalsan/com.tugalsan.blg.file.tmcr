@@ -60,7 +60,7 @@ public class Main {
         d.cr("main", "result", result);
     }
 
-    private static TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
+    private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
         var value = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
         d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", value);
     };
