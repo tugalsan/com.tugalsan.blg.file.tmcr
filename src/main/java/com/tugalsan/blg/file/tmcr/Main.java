@@ -99,14 +99,14 @@ public class Main {
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
         var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
-        return new TS_FileCommonConfig(
+        return TS_FileCommonConfig.of(
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
                 customDomain, favIconPng, domainName,
-                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
+                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp
         );
     }
 }
