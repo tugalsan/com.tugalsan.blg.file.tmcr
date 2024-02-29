@@ -24,7 +24,7 @@ public class Main {
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
-        TS_FileTmcrFileHandler.enablePreviewPanLetters = true;
+        TS_FileTmcrFileHandler.ENABLE_PREVIEW_PAN_LETTERS = true;
         TS_FileTmcrFileHandler.d.infoEnable = true;
 //        TGS_UnSafe.run(() -> {//TEST canDisplay
 //            var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
