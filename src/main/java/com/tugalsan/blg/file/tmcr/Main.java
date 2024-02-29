@@ -100,6 +100,7 @@ public class Main {
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
         var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
+        d.cr("toConfig", "see files at", dirDatUsrTmp);
         return TS_FileCommonConfig.of(
                 macroLines, username,
                 tablename, selectedId,
