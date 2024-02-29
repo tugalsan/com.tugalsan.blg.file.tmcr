@@ -46,7 +46,7 @@ public class Main {
 //        if (true) {
 //            return;
 //        }
-        List<String> macroLines = TGS_ListUtils.of(
+        var config = toConfig(TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
@@ -55,9 +55,14 @@ public class Main {
                 TS_FileTmcrCodeTextWriter.END_TEXT(),
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
+        ));
+        var result = TS_FileTmcrFileHandler.use(
+                config,
+                createDbAnchor("test"),
+                progressUpdate
         );
-        var result = TS_FileTmcrFileHandler.use(toConfig(macroLines), createDbAnchor("test"), progressUpdate);
         d.cr("main", "result", result);
+        d.cr("toConfig", "see files at", config.dirDatUsrTmp);
     }
 
     private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
@@ -100,7 +105,6 @@ public class Main {
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
         var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
-        d.cr("toConfig", "see files at", dirDatUsrTmp);
         return TS_FileCommonConfig.of(
                 macroLines, username,
                 tablename, selectedId,
