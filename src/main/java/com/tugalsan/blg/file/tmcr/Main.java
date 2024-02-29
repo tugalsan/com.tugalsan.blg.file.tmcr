@@ -87,11 +87,12 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("D:\\xampp_data\\DAT");
-        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");
-        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");
-        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");
-        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
-        var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");
+        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");//google
+        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");//google
+        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");//google
+        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");//google
+//        var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");//needs license
+        var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Quivira-A8VL.ttf");//freeware
         var customDomain = TGS_Url.of("https://localhost:8443");
         var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
         var domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
