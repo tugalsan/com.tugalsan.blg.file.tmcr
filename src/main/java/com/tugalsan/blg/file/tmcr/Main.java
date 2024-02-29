@@ -24,28 +24,7 @@ public class Main {
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
-        TS_FileTmcrFileHandler.ENABLE_PREVIEW_PAN_LETTERS = true;
         TS_FileTmcrFileHandler.d.infoEnable = true;
-//        TGS_UnSafe.run(() -> {//TEST canDisplay
-//            var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");
-//            var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");
-//            var fontRegular = Font.createFont(Font.TRUETYPE_FONT, fontPathRegular.toFile()).deriveFont(12f);
-//            var fontPanUnicode = Font.createFont(Font.TRUETYPE_FONT, fontPathPanUnicode.toFile()).deriveFont(12f);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontRegular);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontPanUnicode);
-//            var codePoints = text.codePoints().toArray();
-//            var sb = new StringBuilder();
-//            IntStream.range(0, codePoints.length).forEachOrdered(idx -> {
-//                var codePoint = codePoints[idx];
-//                sb.setLength(0);
-//                sb.appendCodePoint(codePoint);
-//                var letter = sb.toString();
-//                d.cr("letterTest", idx, letter, fontRegular.canDisplay(codePoint), fontPanUnicode.canDisplay(codePoint));
-//            });
-//        });
-//        if (true) {
-//            return;
-//        }
         var config = toConfig(TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
@@ -92,10 +71,14 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("D:\\xampp_data\\DAT");
-        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");//google
-        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");//google
-        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");//google
-        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");//google
+        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBold.ttf");//https://www.gnu.org/software/freefont/license.html
+        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBoldItalic.ttf");//https://www.gnu.org/software/freefont/license.html
+        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifItalic.ttf");//https://www.gnu.org/software/freefont/license.html
+        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerif.ttf");//https://www.gnu.org/software/freefont/license.html
+//        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Bold.ttf");//google
+//        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-BoldItalic.ttf");//google
+//        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Italic.ttf");//google
+//        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Roboto-Regular.ttf");//google
 //        var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Code2000-rdLO.ttf");//needs license
         var fontPathPanUnicode = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Quivira-A8VL.ttf");//freeware
         var customDomain = TGS_Url.of("https://localhost:8443");

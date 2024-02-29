@@ -57,6 +57,7 @@
                         <arg>jdk.incubator.vector</arg>
                         <arg>-XX:+EnableDynamicAgentLoading 
                     </compilerArgs> -->
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>    
         </plugins>
