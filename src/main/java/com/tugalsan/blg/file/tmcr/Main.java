@@ -1,5 +1,6 @@
 package com.tugalsan.blg.file.tmcr;
 
+import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.list.client.TGS_ListUtils;
@@ -71,11 +72,12 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("D:\\xampp_data\\DAT");
-        var fontFamilyPath = new TGS_FontFamily(//https://www.gnu.org/software/freefont/license.html
-                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerif.ttf"),
-                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifItalic.ttf"),
-                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBold.ttf"),
-                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBoldItalic.ttf")
+        TGS_CallableType1<Path, String> fontPath = fontFileName -> Path.of("D:", "xampp_data", "DAT", "PUB", "FONT", fontFileName);
+        List<TGS_FontFamily<Path>> fontFamilyPaths = TGS_ListUtils.of(
+                new TGS_FontFamily(fontPath.call("Roboto-Regular.ttf"), fontPath.call("Roboto-Bold.ttf"), fontPath.call("Roboto-Italic.ttf"), fontPath.call("Roboto-BoldItalic.ttf")),
+                new TGS_FontFamily(fontPath.call("FreeSerif.ttf"), fontPath.call("FreeSerifBold.ttf"), fontPath.call("FreeSerifItalic.ttf"), fontPath.call("FreeSerifBoldItalic.ttf")),
+                new TGS_FontFamily(fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf")),
+                new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
         var customDomain = TGS_Url.of("https://localhost:8443");
         var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
@@ -89,7 +91,7 @@ public class Main {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                TGS_ListUtils.of(fontFamilyPath),
+                fontFamilyPaths,
                 customDomain, favIconPng, domainName,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp
         );
