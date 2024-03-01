@@ -1,6 +1,7 @@
 module com.tugalsan.blg.file.tmcr {
     requires java.desktop;
     requires com.tugalsan.api.unsafe;
+    requires com.tugalsan.api.font;
     requires com.tugalsan.api.log;
     requires com.tugalsan.api.list;
     requires com.tugalsan.api.sql.conn;

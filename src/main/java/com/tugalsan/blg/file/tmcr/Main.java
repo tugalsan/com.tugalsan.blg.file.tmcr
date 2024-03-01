@@ -1,6 +1,7 @@
 package com.tugalsan.blg.file.tmcr;
 
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
+import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
@@ -75,7 +76,6 @@ public class Main {
         var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBoldItalic.ttf");
         var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifItalic.ttf");
         var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerif.ttf");
-        var fontPathPanUnicode = fontPathRegular;//Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\Quivira-A8VL.ttf");//not working for not
         var customDomain = TGS_Url.of("https://localhost:8443");
         var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
         var domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
@@ -88,7 +88,7 @@ public class Main {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
+                new TGS_FontFamily(fontPathRegular, fontPathBold, fontPathItalic, fontPathBoldItalic),
                 customDomain, favIconPng, domainName,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp
         );
