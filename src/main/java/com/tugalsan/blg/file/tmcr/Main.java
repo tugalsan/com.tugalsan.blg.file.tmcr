@@ -58,7 +58,6 @@ public class Main {
         var username = "myUserName";
         var tablename = "myTableName";
         var selectedId = 1L;
-
         var funcName = "MyFunctionName";
         var fileNameLabel = "MyFileNameLabel";
         var url = TGS_Url.of("http://tugalsan.com");
@@ -72,10 +71,12 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("D:\\xampp_data\\DAT");
-        var fontPathBold = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBold.ttf");//https://www.gnu.org/software/freefont/license.html
-        var fontPathBoldItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBoldItalic.ttf");
-        var fontPathItalic = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifItalic.ttf");
-        var fontPathRegular = Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerif.ttf");
+        var fontFamilyPath = new TGS_FontFamily(//https://www.gnu.org/software/freefont/license.html
+                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerif.ttf"),
+                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifItalic.ttf"),
+                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBold.ttf"),
+                Path.of("D:\\xampp_data\\DAT\\PUB\\FONT\\FreeSerifBoldItalic.ttf")
+        );
         var customDomain = TGS_Url.of("https://localhost:8443");
         var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
         var domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
@@ -88,7 +89,7 @@ public class Main {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                new TGS_FontFamily(fontPathRegular, fontPathBold, fontPathItalic, fontPathBoldItalic),
+                TGS_ListUtils.of(fontFamilyPath),
                 customDomain, favIconPng, domainName,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp
         );
