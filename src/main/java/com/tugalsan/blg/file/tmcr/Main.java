@@ -11,6 +11,7 @@ import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
 import com.tugalsan.api.url.client.TGS_Url;
 import com.tugalsan.lib.file.tmcr.client.TGS_FileTmcrTypes;
+import com.tugalsan.lib.file.tmcr.server.code.font.TS_FileTmcrCodeFontWriter;
 import com.tugalsan.lib.file.tmcr.server.code.page.TS_FileTmcrCodePageWriter;
 import com.tugalsan.lib.file.tmcr.server.code.parser.TS_FileTmcrParser;
 import com.tugalsan.lib.file.tmcr.server.code.table.TS_FileTmcrCodeTableWriter;
@@ -35,6 +36,10 @@ public class Main {
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
                 TS_FileTmcrCodeTextWriter.BEGIN_TEXT_LEFT(),
+                TS_FileTmcrCodeTextWriter.ADD_TEXT(text),
+                TS_FileTmcrCodeTextWriter.ADD_TEXT_NEWLINE(),
+                TS_FileTmcrCodeFontWriter.SET_FONT_COLOR_RED(),
+                TS_FileTmcrCodeFontWriter.SET_FONT_STYLE_BOLD(),
                 TS_FileTmcrCodeTextWriter.ADD_TEXT(text),
                 TS_FileTmcrCodeTextWriter.END_TEXT(),
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
