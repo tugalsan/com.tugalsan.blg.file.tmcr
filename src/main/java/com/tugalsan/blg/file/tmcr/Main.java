@@ -3,6 +3,7 @@ package com.tugalsan.blg.file.tmcr;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.font.client.TGS_FontFamily;
+import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
@@ -25,6 +26,8 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
+      
+
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         TS_FileTmcrFileHandler.d.infoEnable = true;
         var config = toConfig(TGS_ListUtils.of(
@@ -44,6 +47,8 @@ public class Main {
         );
         d.cr("main", "result", result);
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
+        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
+        
     }
 
     private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
