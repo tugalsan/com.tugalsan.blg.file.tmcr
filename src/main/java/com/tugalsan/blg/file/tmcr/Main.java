@@ -27,7 +27,6 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
-      
 
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         TS_FileTmcrFileHandler.d.infoEnable = true;
@@ -53,7 +52,7 @@ public class Main {
         d.cr("main", "result", result);
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
         TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
-        
+
     }
 
     private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
@@ -89,9 +88,7 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf")),
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
-        var customDomain = TGS_Url.of("https://localhost:8443");
         var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
-        var domainName = "localhost";//WHY NOT PARSE FROM customDomain(?)
         var dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
@@ -102,8 +99,9 @@ public class Main {
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                customDomain, favIconPng, domainName,
-                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp
+                favIconPng,
+                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
+                null
         );
     }
 }
