@@ -1,9 +1,9 @@
 package com.tugalsan.blg.file.tmcr;
 
 import com.tugalsan.api.callable.client.TGS_CallableType1;
+import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.font.client.TGS_FontFamily;
-import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
@@ -27,10 +27,10 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
-
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
+        var favIconText = "☃";
         TS_FileTmcrFileHandler.d.infoEnable = true;
-        var config = toConfig(TGS_ListUtils.of(
+        var config = toConfig(favIconText, TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
@@ -51,8 +51,7 @@ public class Main {
         );
         d.cr("main", "result", result);
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
-        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
-
+//        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
     }
 
     private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
@@ -64,7 +63,7 @@ public class Main {
         return TS_SQLConnAnchor.of(TS_SQLConnConfig.of(dbName));
     }
 
-    private static TS_FileCommonConfig toConfig(List<String> macroLines) {
+    private static TS_FileCommonConfig toConfig(String favIconText, List<String> macroLines) {
         var username = "myUserName";
         var tablename = "myTableName";
         var selectedId = 1L;
@@ -88,7 +87,7 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf")),
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
-        var favIconPng = TGS_Url.of("https://localhost:8443/favicon/dark-16x16.png");
+        var favIcon = TGS_FileCommonFavIcon.of(favIconText, null, false);
         var dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
@@ -99,7 +98,7 @@ public class Main {
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                favIconPng,
+                favIcon,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
                 null
         );
