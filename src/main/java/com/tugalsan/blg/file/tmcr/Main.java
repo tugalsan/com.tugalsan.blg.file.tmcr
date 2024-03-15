@@ -18,6 +18,7 @@ import com.tugalsan.lib.file.tmcr.server.code.table.TS_FileTmcrCodeTableWriter;
 import com.tugalsan.lib.file.tmcr.server.code.text.TS_FileTmcrCodeTextWriter;
 import com.tugalsan.lib.file.tmcr.server.file.TS_FileTmcrFileHandler;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.List;
 
 public class Main {
@@ -29,6 +30,7 @@ public class Main {
     public static void main(String... s) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         var favIconText = "☃";
+        var timeout = Duration.ofSeconds(30);
         TS_FileTmcrFileHandler.d.infoEnable = true;
         var config = toConfig(favIconText, TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
@@ -47,7 +49,8 @@ public class Main {
         var result = TS_FileTmcrFileHandler.use(
                 config,
                 createDbAnchor("test"),
-                progressUpdate
+                progressUpdate,
+                timeout
         );
         d.cr("main", "result", result);
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
@@ -87,7 +90,7 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf"), fontPath.call("Quivira-A8VL.ttf")),
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
-        var favIcon = TGS_FileCommonFavIcon.of(favIconText, null, false);
+        var favIcon = TGS_FileCommonFavIcon.ofTxt(favIconText, null, false);
         var dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
         var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
         var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
