@@ -9,6 +9,7 @@ import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
+import com.tugalsan.api.union.client.TGS_UnionExcuse;
 import com.tugalsan.api.url.client.TGS_Url;
 import com.tugalsan.lib.file.tmcr.client.TGS_FileTmcrTypes;
 import com.tugalsan.lib.file.tmcr.server.code.font.TS_FileTmcrCodeFontWriter;
@@ -32,7 +33,7 @@ public class Main {
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
         TS_FileTmcrFileHandler.d.infoEnable = true;
-        var config = toConfig(favIconText, TGS_ListUtils.of(
+        var u_config = toConfig(favIconText, TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
@@ -46,14 +47,17 @@ public class Main {
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
         ));
+        if (u_config.isExcuse()) {
+            d.ce("main", u_config.excuse());
+        }
         var result = TS_FileTmcrFileHandler.use(
-                config,
+                u_config.value(),
                 createDbAnchor("test"),
                 progressUpdate,
                 timeout
         );
         d.cr("main", "result", result);
-        d.cr("toConfig", "see files at", config.dirDatUsrTmp);
+        d.cr("toConfig", "see files at", u_config.value().dirDatUsrTmp);
 //        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
     }
 
@@ -66,7 +70,7 @@ public class Main {
         return TS_SQLConnAnchor.of(TS_SQLConnConfig.of(dbName));
     }
 
-    private static TS_FileCommonConfig toConfig(String favIconText, List<String> macroLines) {
+    private static TGS_UnionExcuse<TS_FileCommonConfig> toConfig(String favIconText, List<String> macroLines) {
         var username = "myUserName";
         var tablename = "myTableName";
         var selectedId = 1L;
