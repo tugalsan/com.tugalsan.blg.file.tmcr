@@ -9,7 +9,6 @@ import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.runnable.client.TGS_RunnableType2;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
-import com.tugalsan.api.union.client.TGS_UnionExcuse;
 import com.tugalsan.api.url.client.TGS_Url;
 import com.tugalsan.lib.file.tmcr.client.TGS_FileTmcrTypes;
 import com.tugalsan.lib.file.tmcr.server.code.font.TS_FileTmcrCodeFontWriter;
@@ -47,17 +46,19 @@ public class Main {
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
         ));
-        if (u_config.isExcuse()) {
-            d.ce("main", u_config.excuse());
-        }
+//        if (u_config.isExcuse()) {
+//            d.ce("main", u_config.excuse());
+//        }
         var result = TS_FileTmcrFileHandler.use(
-                u_config.value(),
+//                u_config.value(),
+                u_config,
                 createDbAnchor("test"),
                 progressUpdate,
                 timeout
         );
         d.cr("main", "result", result);
-        d.cr("toConfig", "see files at", u_config.value().dirDatUsrTmp);
+        d.cr("toConfig", "see files at", u_config.dirDatUsrTmp);
+//        d.cr("toConfig", "see files at", u_config.value().dirDatUsrTmp);
 //        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
     }
 
@@ -70,7 +71,7 @@ public class Main {
         return TS_SQLConnAnchor.of(TS_SQLConnConfig.of(dbName));
     }
 
-    private static TGS_UnionExcuse<TS_FileCommonConfig> toConfig(String favIconText, List<String> macroLines) {
+    private static TS_FileCommonConfig toConfig(String favIconText, List<String> macroLines) {
         var username = "myUserName";
         var tablename = "myTableName";
         var selectedId = 1L;

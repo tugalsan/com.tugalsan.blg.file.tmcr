@@ -1,6 +1,6 @@
 module com.tugalsan.blg.file.tmcr {
     requires java.desktop;
-    requires com.tugalsan.api.union;
+//    requires com.tugalsan.api.union;
     requires com.tugalsan.api.font;
     requires com.tugalsan.api.log;
     requires com.tugalsan.api.list;
