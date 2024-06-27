@@ -1,6 +1,6 @@
 package com.tugalsan.blg.file.tmcr;
 
-import com.tugalsan.api.callable.client.TGS_CallableType1;
+import com.tugalsan.api.function.client.TGS_Func_OutTyped_In1;
 import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.font.client.TGS_FontFamily;
@@ -88,7 +88,7 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("D:\\xampp_data\\DAT");
-        TGS_CallableType1<Path, String> fontPath = fontFileName -> Path.of("D:", "xampp_data", "DAT", "PUB", "FONT", fontFileName);
+        TGS_Func_OutTyped_In1<Path, String> fontPath = fontFileName -> Path.of("D:", "xampp_data", "DAT", "PUB", "FONT", fontFileName);
         List<TGS_FontFamily<Path>> fontFamilyPaths = TGS_ListUtils.of(
                 new TGS_FontFamily(fontPath.call("Roboto-Regular.ttf"), fontPath.call("Roboto-Bold.ttf"), fontPath.call("Roboto-Italic.ttf"), fontPath.call("Roboto-BoldItalic.ttf")),
                 new TGS_FontFamily(fontPath.call("FreeSerif.ttf"), fontPath.call("FreeSerifBold.ttf"), fontPath.call("FreeSerifItalic.ttf"), fontPath.call("FreeSerifBoldItalic.ttf")),
