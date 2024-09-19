@@ -32,7 +32,7 @@ public class Main {
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
         TS_FileTmcrFileHandler.d.infoEnable = true;
-        var u_config = toConfig(favIconText, TGS_ListUtils.of(
+        List<String> macroCode = TGS_ListUtils.of(
                 TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
                 TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
@@ -45,21 +45,16 @@ public class Main {
                 TS_FileTmcrCodeTextWriter.END_TEXT(),
                 TS_FileTmcrCodeTableWriter.END_TABLECELL(),
                 TS_FileTmcrCodeTableWriter.END_TABLE()
-        ));
-//        if (u_config.isExcuse()) {
-//            d.ce("main", u_config.excuse());
-//        }
+        );
+        var config = toConfig(favIconText, macroCode);
         var result = TS_FileTmcrFileHandler.use(
-                //                u_config.value(),
-                u_config,
+                config,
                 createDbAnchor("test"),
                 progressUpdate,
                 timeout
         );
         d.cr("main", "result", result);
-        d.cr("toConfig", "see files at", u_config.dirDatUsrTmp);
-//        d.cr("toConfig", "see files at", u_config.value().dirDatUsrTmp);
-//        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
+        d.cr("toConfig", "see files at", config.dirDatUsrTmp);
     }
 
     private static final TGS_Func_In2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
@@ -87,8 +82,8 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_XLSX(),
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
-        var dirDat = Path.of("D:\\xampp_data\\DAT");
-        TGS_Func_OutTyped_In1<Path, String> fontPath = fontFileName -> Path.of("D:", "xampp_data", "DAT", "PUB", "FONT", fontFileName);
+        var dirDat = Path.of("C:\\dat\\dat");
+        TGS_Func_OutTyped_In1<Path, String> fontPath = fontFileName -> Path.of("C:", "dat", "DAT", "pub", "font", fontFileName);
         List<TGS_FontFamily<Path>> fontFamilyPaths = TGS_ListUtils.of(
                 new TGS_FontFamily(fontPath.call("Roboto-Regular.ttf"), fontPath.call("Roboto-Bold.ttf"), fontPath.call("Roboto-Italic.ttf"), fontPath.call("Roboto-BoldItalic.ttf")),
                 new TGS_FontFamily(fontPath.call("FreeSerif.ttf"), fontPath.call("FreeSerifBold.ttf"), fontPath.call("FreeSerifItalic.ttf"), fontPath.call("FreeSerifBoldItalic.ttf")),
@@ -96,10 +91,10 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
         var favIcon = TGS_FileCommonFavIcon.ofTxt(favIconText, null, false);
-        var dirDatTbl = Path.of("D:\\xampp_data\\DAT\\TBL");
-        var dirDatPub = Path.of("D:\\xampp_data\\DAT\\PUB");
-        var dirDatUsr = Path.of("D:\\xampp_data\\DAT\\USR\\admin");
-        var dirDatUsrTmp = Path.of("D:\\xampp_data\\DAT\\USR\\admin\\tmp");
+        var dirDatTbl = Path.of("C:\\dat\\dat\\tbl");
+        var dirDatPub = Path.of("C:\\dat\\dat\\pub");
+        var dirDatUsr = Path.of("C:\\dat\\dat\\usr\\admin");
+        var dirDatUsrTmp = Path.of("C:\\dat\\dat\\usr\\admin\\tmp");
         return TS_FileCommonConfig.of(
                 macroLines, username,
                 tablename, selectedId,
