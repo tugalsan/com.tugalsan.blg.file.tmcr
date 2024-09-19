@@ -82,8 +82,8 @@ public class Main {
                 TGS_FileTmcrTypes.FILE_TYPE_XLSX(),
                 TGS_FileTmcrTypes.FILE_TYPE_ZIP()
         );
-        var dirDat = Path.of("C:\\dat\\dat");
-        TGS_Func_OutTyped_In1<Path, String> fontPath = fontFileName -> Path.of("C:", "dat", "DAT", "pub", "font", fontFileName);
+        var dirDat = Path.of("C:", "dat", "dat");
+        TGS_Func_OutTyped_In1<Path, String> fontPath = fontFileName -> dirDat.resolve("pub").resolve("font").resolve(fontFileName);
         List<TGS_FontFamily<Path>> fontFamilyPaths = TGS_ListUtils.of(
                 new TGS_FontFamily(fontPath.call("Roboto-Regular.ttf"), fontPath.call("Roboto-Bold.ttf"), fontPath.call("Roboto-Italic.ttf"), fontPath.call("Roboto-BoldItalic.ttf")),
                 new TGS_FontFamily(fontPath.call("FreeSerif.ttf"), fontPath.call("FreeSerifBold.ttf"), fontPath.call("FreeSerifItalic.ttf"), fontPath.call("FreeSerifBoldItalic.ttf")),
@@ -91,10 +91,10 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
         var favIcon = TGS_FileCommonFavIcon.ofTxt(favIconText, null, false);
-        var dirDatTbl = Path.of("C:\\dat\\dat\\tbl");
-        var dirDatPub = Path.of("C:\\dat\\dat\\pub");
-        var dirDatUsr = Path.of("C:\\dat\\dat\\usr\\admin");
-        var dirDatUsrTmp = Path.of("C:\\dat\\dat\\usr\\admin\\tmp");
+        var dirDatTbl = dirDat.resolve("tbl");
+        var dirDatPub = dirDat.resolve("pub");
+        var dirDatUsr = dirDat.resolve("usr").resolve("admin");
+        var dirDatUsrTmp = dirDatUsr.resolve("tmp");
         return TS_FileCommonConfig.of(
                 macroLines, username,
                 tablename, selectedId,
