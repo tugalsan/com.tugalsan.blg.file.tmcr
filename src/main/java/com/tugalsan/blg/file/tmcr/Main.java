@@ -10,13 +10,13 @@ import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
 import com.tugalsan.api.url.client.TGS_Url;
-import com.tugalsan.lib.file.tmcr.client.TGS_FileTmcrTypes;
-import com.tugalsan.lib.file.tmcr.server.code.font.TS_FileTmcrCodeFontWriter;
-import com.tugalsan.lib.file.tmcr.server.code.page.TS_FileTmcrCodePageWriter;
-import com.tugalsan.lib.file.tmcr.server.code.parser.TS_FileTmcrParser;
-import com.tugalsan.lib.file.tmcr.server.code.table.TS_FileTmcrCodeTableWriter;
-import com.tugalsan.lib.file.tmcr.server.code.text.TS_FileTmcrCodeTextWriter;
-import com.tugalsan.lib.file.tmcr.server.file.TS_FileTmcrFileHandler;
+import com.tugalsan.lib.file.tmcr.client.TGS_LibFileTmcrTypes;
+import com.tugalsan.lib.file.tmcr.server.code.font.TS_LibFileTmcrCodeFontWriter;
+import com.tugalsan.lib.file.tmcr.server.code.page.TS_LibFileTmcrCodePageWriter;
+import com.tugalsan.lib.file.tmcr.server.code.parser.TS_LibFileTmcrParser;
+import com.tugalsan.lib.file.tmcr.server.code.table.TS_LibFileTmcrCodeTableWriter;
+import com.tugalsan.lib.file.tmcr.server.code.text.TS_LibFileTmcrCodeTextWriter;
+import com.tugalsan.lib.file.tmcr.server.file.TS_LibFileTmcrFileHandler;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.List;
@@ -31,23 +31,23 @@ public class Main {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
-        TS_FileTmcrFileHandler.d.infoEnable = true;
+        TS_LibFileTmcrFileHandler.d.infoEnable = true;
         List<String> macroCode = TGS_ListUtils.of(
-                TS_FileTmcrCodePageWriter.INSERT_PAGE(4, true),
-                TS_FileTmcrCodeTableWriter.BEGIN_TABLE(1),
-                TS_FileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
-                TS_FileTmcrCodeTextWriter.BEGIN_TEXT_LEFT(),
-                TS_FileTmcrCodeTextWriter.ADD_TEXT(text),
-                TS_FileTmcrCodeTextWriter.ADD_TEXT_NEWLINE(),
-                TS_FileTmcrCodeFontWriter.SET_FONT_COLOR_RED(),
-                TS_FileTmcrCodeFontWriter.SET_FONT_STYLE_BOLD(),
-                TS_FileTmcrCodeTextWriter.ADD_TEXT(text),
-                TS_FileTmcrCodeTextWriter.END_TEXT(),
-                TS_FileTmcrCodeTableWriter.END_TABLECELL(),
-                TS_FileTmcrCodeTableWriter.END_TABLE()
+                TS_LibFileTmcrCodePageWriter.INSERT_PAGE(4, true),
+                TS_LibFileTmcrCodeTableWriter.BEGIN_TABLE(1),
+                TS_LibFileTmcrCodeTableWriter.BEGIN_TABLECELL(1, 1, null),
+                TS_LibFileTmcrCodeTextWriter.BEGIN_TEXT_LEFT(),
+                TS_LibFileTmcrCodeTextWriter.ADD_TEXT(text),
+                TS_LibFileTmcrCodeTextWriter.ADD_TEXT_NEWLINE(),
+                TS_LibFileTmcrCodeFontWriter.SET_FONT_COLOR_RED(),
+                TS_LibFileTmcrCodeFontWriter.SET_FONT_STYLE_BOLD(),
+                TS_LibFileTmcrCodeTextWriter.ADD_TEXT(text),
+                TS_LibFileTmcrCodeTextWriter.END_TEXT(),
+                TS_LibFileTmcrCodeTableWriter.END_TABLECELL(),
+                TS_LibFileTmcrCodeTableWriter.END_TABLE()
         );
         var config = toConfig(favIconText, macroCode);
-        var result = TS_FileTmcrFileHandler.use(
+        var result = TS_LibFileTmcrFileHandler.use(
                 config,
                 createDbAnchor("test"),
                 progressUpdate,
@@ -58,7 +58,7 @@ public class Main {
     }
 
     private static final TGS_Func_In2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
-        var value = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
+        var value = percentage == TS_LibFileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
         d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", value);
     };
 
@@ -73,14 +73,13 @@ public class Main {
         var funcName = "MyFunctionName";
         var fileNameLabel = "MyFileNameLabel";
         var url = TGS_Url.of("http://tugalsan.com");
-        List<String> requestedFileTypes = TGS_ListUtils.of(
-                TGS_FileTmcrTypes.FILE_TYPE_DOCX(),
-                TGS_FileTmcrTypes.FILE_TYPE_HTM(),
-                TGS_FileTmcrTypes.FILE_TYPE_HTML(),
-                TGS_FileTmcrTypes.FILE_TYPE_PDF(),
-                TGS_FileTmcrTypes.FILE_TYPE_TMCR(),
-                TGS_FileTmcrTypes.FILE_TYPE_XLSX(),
-                TGS_FileTmcrTypes.FILE_TYPE_ZIP()
+        List<String> requestedFileTypes = TGS_ListUtils.of(TGS_LibFileTmcrTypes.FILE_TYPE_DOCX(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_HTM(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_HTML(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_PDF(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_TMCR(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_XLSX(),
+                TGS_LibFileTmcrTypes.FILE_TYPE_ZIP()
         );
         var dirDat = Path.of("C:", "dat", "dat");
         var dirDatTbl = dirDat.resolve("tbl");
