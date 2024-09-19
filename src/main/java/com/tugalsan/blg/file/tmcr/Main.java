@@ -4,9 +4,9 @@ import com.tugalsan.api.function.client.TGS_Func_OutTyped_In1;
 import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.font.client.TGS_FontFamily;
+import com.tugalsan.api.function.client.TGS_Func_In2;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
-import com.tugalsan.api.runnable.client.TGS_RunnableType2;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
 import com.tugalsan.api.url.client.TGS_Url;
@@ -50,7 +50,7 @@ public class Main {
 //            d.ce("main", u_config.excuse());
 //        }
         var result = TS_FileTmcrFileHandler.use(
-//                u_config.value(),
+                //                u_config.value(),
                 u_config,
                 createDbAnchor("test"),
                 progressUpdate,
@@ -62,7 +62,7 @@ public class Main {
 //        TS_FontUtils.listRegisteredFontNames().forEach(fn -> d.cr("main", fn));
     }
 
-    private static final TGS_RunnableType2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
+    private static final TGS_Func_In2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
         var value = percentage == TS_FileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
         d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", value);
     };
