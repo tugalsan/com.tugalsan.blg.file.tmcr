@@ -1,0 +1,1 @@
+copy C:\git\blg\com.tugalsan.blg.file.tmcr\sample*.* C:\dat\dat\usr\admin
