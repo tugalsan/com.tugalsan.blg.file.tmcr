@@ -34,8 +34,9 @@ public class Main {
     final static Path dirDatUsrTmp = dirDatUsr.resolve("tmp");
     final static Path dirDatUsrImagePortrait = dirDatUsr.resolve("sample_portrait.jpg");
     final static Path dirDatUsrImageLandscape = dirDatUsr.resolve("sample_landscape.jpg");
-    final static Integer imageWidth = null;
-    final static Integer imageHeight = null;
+    final static Path dirDatUsrImageRectangle = dirDatUsr.resolve("sample_rectangle.jpg");
+    final static Integer imageWidth = 100;
+    final static Integer imageHeight = 100;
 
     public static List<String> macroCode_addTable(Path image) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
@@ -89,6 +90,7 @@ public class Main {
                 TS_LibFileTmcrCodePageWriter.INSERT_PAGE(4, true),
                 TS_LibFileTmcrCodeFontWriter.SET_FONT_SIZE(10)
         );
+        macroCode.addAll(macroCode_addTable(dirDatUsrImageRectangle));
         macroCode.addAll(macroCode_addTable(dirDatUsrImageLandscape));
         macroCode.addAll(macroCode_addTable(dirDatUsrImagePortrait));
         var config = toConfig(favIconText, macroCode);
