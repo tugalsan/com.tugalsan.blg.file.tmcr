@@ -23,6 +23,7 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.util.List;
 
+//C:/dat/dat/usr/admin/tmp
 public class Main {
 
     private static final TS_Log d = TS_Log.of(true, Main.class);
@@ -41,11 +42,11 @@ public class Main {
     public static List<String> macroCode_addTable(Path image) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         return TGS_ListUtils.of(
-//                TS_LibFileTmcrCodeImageBuilder
-//                        .maxWidth(imageWidth).maxHeight(imageHeight)
-//                        .respectOrientation(true).allignLeft()
-//                        .textWrap(true).rotateDisable()
-//                        .buildFromPath(image).toString(),
+                TS_LibFileTmcrCodeImageBuilder
+                        .maxWidth(imageWidth).maxHeight(imageHeight)
+                        .respectOrientation(true).allignLeft()
+                        .textWrap(true).rotateDisable()
+                        .buildFromPath(image).toString(),
                 //TABLE-BEGIN
                 TS_LibFileTmcrCodeTableWriter.BEGIN_TABLE(3),
                 //TABLE_CELL-LEFT_IMAGE 
