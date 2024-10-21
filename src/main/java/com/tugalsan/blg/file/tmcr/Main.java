@@ -95,7 +95,9 @@ public class Main {
         macroCode.addAll(macroCode_addTable(dirDatUsrImageLandscape));
         macroCode.addAll(macroCode_addTable(dirDatUsrImagePortrait));
         var config = toConfig(favIconText, macroCode);
+        var useOpenPdf = true;
         var result = TS_LibFileTmcrFileHandler.use(
+                useOpenPdf,
                 config,
                 createDbAnchor("test"),
                 progressUpdate,
