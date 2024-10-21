@@ -97,7 +97,7 @@ public class Main {
         var config = toConfig(favIconText, macroCode);
         var useOpenPdf = true;
         var result = TS_LibFileTmcrFileHandler.use(
-                useOpenPdf,
+//                useOpenPdf,
                 config,
                 createDbAnchor("test"),
                 progressUpdate,
