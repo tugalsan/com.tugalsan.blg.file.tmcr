@@ -95,11 +95,13 @@ public class Main {
         macroCode.addAll(macroCode_addTable(dirDatUsrImageLandscape));
         macroCode.addAll(macroCode_addTable(dirDatUsrImagePortrait));
         var config = toConfig(favIconText, macroCode);
+        var defaultViewTableName = "common";
         var result = TS_LibFileTmcrFileHandler.use(
                 config,
                 createDbAnchor("test"),
                 progressUpdate,
-                timeout
+                timeout,
+                defaultViewTableName
         );
         d.cr("main", "result", result);
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
@@ -137,7 +139,9 @@ public class Main {
                 new TGS_FontFamily(fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"), fontPath.call("Code2000-rdLO.ttf"))
         );
         var favIcon = TGS_FileCommonFavIcon.ofTxt(favIconText, null, false);
+        var PARALLEL = false;
         return TS_FileCommonConfig.of(
+                PARALLEL,
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
