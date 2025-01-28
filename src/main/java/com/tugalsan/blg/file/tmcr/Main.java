@@ -10,6 +10,7 @@ import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
+import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
 import com.tugalsan.api.url.client.TGS_Url;
 import com.tugalsan.lib.file.tmcr.client.TGS_LibFileTmcrTypes;
 import com.tugalsan.lib.file.tmcr.server.code.font.TS_LibFileTmcrCodeFontWriter;
@@ -83,6 +84,7 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
+        var threadKiller = TS_ThreadSyncTrigger.of();
         TS_DirectoryUtils.deleteDirectoryIfExists(dirDatUsrTmp, true);
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
@@ -97,6 +99,7 @@ public class Main {
         var config = toConfig(favIconText, macroCode);
         var defaultViewTableName = "common";
         var result = TS_LibFileTmcrFileHandler.use(
+                threadKiller,
                 config,
                 createDbAnchor("test"),
                 progressUpdate,
