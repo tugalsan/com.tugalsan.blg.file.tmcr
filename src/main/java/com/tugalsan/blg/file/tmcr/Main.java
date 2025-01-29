@@ -91,29 +91,25 @@ public class Main {
         TS_DirectoryUtils.deleteDirectoryIfExists(dirDatUsrTmp, true);
 
         {//FIRST, LETS CHECK IF XLSX WORKING
-            var sampleXlsxTable = TS_FileXlsxTable.ofXlsx();
-            sampleXlsxTable.setHeaderBold(true);
-            sampleXlsxTable.setValue(0, "ID", "NAME", "VALUE");
-            IntStream.range(1, 100).forEachOrdered(ri -> {
-                sampleXlsxTable.setValue(ri, ri, "Name" + ri, TGS_RandomUtils.nextString(500, true, true, true, true, null));
-            });
-            var sampleXlsxFile = dirDatUsrTmp.resolve("sampleXlsxTable.xlsx");
-            var u_xlsx = sampleXlsxTable.toFile(sampleXlsxFile);
-            if (u_xlsx.isExcuse()) {
-                d.ce("main", "sampleXlsxFile", sampleXlsxFile);
-                d.ct("main", u_xlsx.excuse());
-            } else {
-                d.cr("main", "sampleXlsxFile", sampleXlsxFile);
-            }
+//            var sampleXlsxTable = TS_FileXlsxTable.ofXlsx();
+//            sampleXlsxTable.setHeaderBold(true);
+//            sampleXlsxTable.setValue(0, "ID", "NAME", "VALUE");
+//            IntStream.range(1, 100).forEachOrdered(ri -> {
+//                sampleXlsxTable.setValue(ri, ri, "Name" + ri, TGS_RandomUtils.nextString(500, true, true, true, true, null));
+//            });
+//            var sampleXlsxFile = dirDatUsrTmp.resolve("sampleXlsxTable.xlsx");
+//            var u_xlsx = sampleXlsxTable.toFile(sampleXlsxFile);
+//            if (u_xlsx.isExcuse()) {
+//                d.ce("main", "sampleXlsxFile", sampleXlsxFile);
+//                d.ct("main", u_xlsx.excuse());
+//            } else {
+//                d.cr("main", "sampleXlsxFile", sampleXlsxFile);
+//            }
+//            if (true) {
+//                return;
+//            }
         }
 
-        {//FIRST, LETS CHECK IF WORD WORKING
-
-        }
-
-        if (true) {
-            return;
-        }
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
         TS_LibFileTmcrFileHandler.d.infoEnable = true;
