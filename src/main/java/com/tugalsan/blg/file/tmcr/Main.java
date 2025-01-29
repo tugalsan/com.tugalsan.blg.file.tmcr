@@ -46,11 +46,14 @@ public class Main {
     public static List<String> macroCode_addTable(Path image) {
         var text = "Tuğalsan Karabacak ♠☀☁☃☎☛ ŞşİiIıÜüÖöÇçŞşĞğ";
         return TGS_ListUtils.of(
+                //PARAGRAF-LEFT_IMAGE 
+                TS_LibFileTmcrCodeTextWriter.BEGIN_TEXT_LEFT(),
                 TS_LibFileTmcrCodeImageBuilder
                         .maxWidth(imageWidth).maxHeight(imageHeight)
                         .respectOrientation(true).allignLeft()
                         .textWrap(true).rotateDisable()
                         .buildFromPath(image).toString(),
+                TS_LibFileTmcrCodeTextWriter.END_TEXT(),
                 //TABLE-BEGIN
                 TS_LibFileTmcrCodeTableWriter.BEGIN_TABLE(3),
                 //TABLE_CELL-LEFT_IMAGE 
