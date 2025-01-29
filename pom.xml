@@ -4,7 +4,7 @@
     <groupId>com.tugalsan</groupId>
     <artifactId>com.tugalsan.blg.file.tmcr</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <dependencies>
+    <dependencies>        
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>com.tugalsan.lib.file.tmcr</artifactId>

@@ -4,10 +4,12 @@ import com.tugalsan.api.function.client.TGS_Func_OutTyped_In1;
 import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.file.server.TS_DirectoryUtils;
+import com.tugalsan.api.file.xlsx.server.TS_FileXlsxTable;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.function.client.TGS_Func_In2;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
+import com.tugalsan.api.random.client.TGS_RandomUtils;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
 import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
 import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
@@ -23,6 +25,7 @@ import com.tugalsan.lib.file.tmcr.server.file.TS_LibFileTmcrFileHandler;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.List;
+import java.util.stream.IntStream;
 
 //C:/dat/dat/usr/admin/tmp
 public class Main {
@@ -86,6 +89,31 @@ public class Main {
     public static void main(String... s) {
         var threadKiller = TS_ThreadSyncTrigger.of();
         TS_DirectoryUtils.deleteDirectoryIfExists(dirDatUsrTmp, true);
+
+        {//FIRST, LETS CHECK IF XLSX WORKING
+            var sampleXlsxTable = TS_FileXlsxTable.ofXlsx();
+            sampleXlsxTable.setHeaderBold(true);
+            sampleXlsxTable.setValue(0, "ID", "NAME", "VALUE");
+            IntStream.range(1, 100).forEachOrdered(ri -> {
+                sampleXlsxTable.setValue(ri, ri, "Name" + ri, TGS_RandomUtils.nextString(500, true, true, true, true, null));
+            });
+            var sampleXlsxFile = dirDatUsrTmp.resolve("sampleXlsxTable.xlsx");
+            var u_xlsx = sampleXlsxTable.toFile(sampleXlsxFile);
+            if (u_xlsx.isExcuse()) {
+                d.ce("main", "sampleXlsxFile", sampleXlsxFile);
+                d.ct("main", u_xlsx.excuse());
+            } else {
+                d.cr("main", "sampleXlsxFile", sampleXlsxFile);
+            }
+        }
+
+        {//FIRST, LETS CHECK IF WORD WORKING
+
+        }
+
+        if (true) {
+            return;
+        }
         var favIconText = "☃";
         var timeout = Duration.ofSeconds(30);
         TS_LibFileTmcrFileHandler.d.infoEnable = true;
