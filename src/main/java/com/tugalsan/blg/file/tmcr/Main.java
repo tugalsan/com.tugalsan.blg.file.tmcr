@@ -90,7 +90,7 @@ public class Main {
     //cd C:\me\codes\com.tugalsan\tst\com.tugalsan.blg.file.tmcr
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.blg.file.tmcr-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String... s) {
-        var threadKiller = TS_ThreadSyncTrigger.of();
+        var threadKiller = TS_ThreadSyncTrigger.of("main");
         TS_DirectoryUtils.deleteDirectoryIfExists(dirDatUsrTmp, true);
 
         {//FIRST, LETS CHECK IF XLSX WORKING
