@@ -1,12 +1,12 @@
 package com.tugalsan.blg.file.tmcr;
 
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_OutTyped_In1;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In1;
 import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
 import com.tugalsan.api.file.server.TS_DirectoryUtils;
 import com.tugalsan.api.file.xlsx.server.TS_FileXlsxTable;
 import com.tugalsan.api.font.client.TGS_FontFamily;
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_In2;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_In2;
 import com.tugalsan.api.list.client.TGS_ListUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.random.client.TGS_RandomUtils;
@@ -137,7 +137,7 @@ public class Main {
         d.cr("toConfig", "see files at", config.dirDatUsrTmp);
     }
 
-    private static final TGS_FuncMTUCE_In2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
+    private static final TGS_FuncMTU_In2<String, Integer> progressUpdate = (userDotTable, percentage) -> {
         var value = percentage == TS_LibFileTmcrParser.CLEAR_PERCENTAGES() ? "clearPercentages" : percentage;
         d.cr("main", "progressUpdate_with_userDotTable_and_percentage", "userDotTable", userDotTable, "percentage", value);
     };
@@ -161,7 +161,7 @@ public class Main {
                 TGS_LibFileTmcrTypes.FILE_TYPE_XLSX(),
                 TGS_LibFileTmcrTypes.FILE_TYPE_ZIP()
         );
-        TGS_FuncMTUCE_OutTyped_In1<Path, String> fontPath = fontFileName -> dirDatPubFont.resolve(fontFileName);
+        TGS_FuncMTU_OutTyped_In1<Path, String> fontPath = fontFileName -> dirDatPubFont.resolve(fontFileName);
         List<TGS_FontFamily<Path>> fontFamilyPaths = TGS_ListUtils.of(
                 new TGS_FontFamily(fontPath.call("Roboto-Regular.ttf"), fontPath.call("Roboto-Bold.ttf"), fontPath.call("Roboto-Italic.ttf"), fontPath.call("Roboto-BoldItalic.ttf")),
                 new TGS_FontFamily(fontPath.call("FreeSerif.ttf"), fontPath.call("FreeSerifBold.ttf"), fontPath.call("FreeSerifItalic.ttf"), fontPath.call("FreeSerifBoldItalic.ttf")),
