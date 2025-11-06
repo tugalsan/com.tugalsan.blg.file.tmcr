@@ -51,7 +51,7 @@ public class Main {
                 TS_LibFileTmcrCodeImageBuilder
                         .maxWidth(imageWidth).maxHeight(imageHeight)
                         .respectOrientation(true).allignLeft()
-                        .textWrap(true).rotateDisable()r
+                        .textWrap(true).rotateDisable()
                         .buildFromPath(image).toString(),
                 TS_LibFileTmcrCodeTextWriter.END_TEXT(),
                 //TABLE-BEGIN
