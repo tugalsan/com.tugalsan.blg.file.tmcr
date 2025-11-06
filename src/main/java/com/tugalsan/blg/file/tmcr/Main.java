@@ -1,31 +1,31 @@
 package com.tugalsan.blg.file.tmcr;
 
-import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In1;
-import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
-import com.tugalsan.api.file.common.server.TS_FileCommonConfig;
-import com.tugalsan.api.file.server.TS_DirectoryUtils;
-import com.tugalsan.api.file.xlsx.server.TS_FileXlsxTable;
-import com.tugalsan.api.font.client.TGS_FontFamily;
-import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_In2;
-import com.tugalsan.api.list.client.TGS_ListUtils;
-import com.tugalsan.api.log.server.TS_Log;
-import com.tugalsan.api.random.client.TGS_RandomUtils;
-import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
-import com.tugalsan.api.sql.conn.server.TS_SQLConnConfig;
-import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
-import com.tugalsan.api.url.client.TGS_Url;
-import com.tugalsan.lib.file.tmcr.client.TGS_LibFileTmcrTypes;
-import com.tugalsan.lib.file.tmcr.server.code.font.TS_LibFileTmcrCodeFontWriter;
-import com.tugalsan.lib.file.tmcr.server.code.image.builder.TS_LibFileTmcrCodeImageBuilder;
-import com.tugalsan.lib.file.tmcr.server.code.page.TS_LibFileTmcrCodePageWriter;
-import com.tugalsan.lib.file.tmcr.server.code.parser.TS_LibFileTmcrParser;
-import com.tugalsan.lib.file.tmcr.server.code.table.TS_LibFileTmcrCodeTableWriter;
-import com.tugalsan.lib.file.tmcr.server.code.text.TS_LibFileTmcrCodeTextWriter;
-import com.tugalsan.lib.file.tmcr.server.file.TS_LibFileTmcrFileHandler;
-import java.nio.file.Path;
-import java.time.Duration;
-import java.util.List;
-import java.util.stream.IntStream;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.*;
+import com.tugalsan.api.file.common.client.*;
+import com.tugalsan.api.file.common.server.*;
+import com.tugalsan.api.file.server.*;
+import com.tugalsan.api.file.xlsx.server.*;
+import com.tugalsan.api.font.client.*;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.*;
+import com.tugalsan.api.list.client.*;
+import com.tugalsan.api.log.server.*;
+import com.tugalsan.api.random.client.*;
+import com.tugalsan.api.sql.conn.server.*;
+import com.tugalsan.api.sql.conn.server.*;
+import com.tugalsan.api.thread.server.sync.*;
+import com.tugalsan.api.url.client.*;
+import com.tugalsan.lib.file.tmcr.client.*;
+import com.tugalsan.lib.file.tmcr.server.code.font.*;
+import com.tugalsan.lib.file.tmcr.server.code.image.builder.*;
+import com.tugalsan.lib.file.tmcr.server.code.page.*;
+import com.tugalsan.lib.file.tmcr.server.code.parser.*;
+import com.tugalsan.lib.file.tmcr.server.code.table.*;
+import com.tugalsan.lib.file.tmcr.server.code.text.*;
+import com.tugalsan.lib.file.tmcr.server.file.*;
+import java.nio.file.*;
+import java.time.*;
+import java.util.*;
+import java.util.stream.*;
 
 //C:/dat/dat/usr/admin/tmp
 public class Main {
@@ -51,7 +51,7 @@ public class Main {
                 TS_LibFileTmcrCodeImageBuilder
                         .maxWidth(imageWidth).maxHeight(imageHeight)
                         .respectOrientation(true).allignLeft()
-                        .textWrap(true).rotateDisable()
+                        .textWrap(true).rotateDisable()r
                         .buildFromPath(image).toString(),
                 TS_LibFileTmcrCodeTextWriter.END_TEXT(),
                 //TABLE-BEGIN
